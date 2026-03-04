@@ -61,7 +61,7 @@ export default class NewsModel {
         const pagesCount = Math.ceil(newsCount / newsPerPage);
 
         let currentPage = requiredPage;
-        
+
         if (requiredPage < 1) {
           currentPage = 1;
         }
@@ -72,7 +72,7 @@ export default class NewsModel {
         let paginatedNewsArray = [];
         let itemsPerPageArray = [];
 
-        for (let i = 0; i < sortedNewsArray.length; i++) {
+        for (let i = 0; i < newsCount; i++) {
           itemsPerPageArray.push(sortedNewsArray[i]);
           if (itemsPerPageArray.length === newsPerPage) {
             paginatedNewsArray.push(itemsPerPageArray);
