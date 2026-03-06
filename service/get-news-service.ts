@@ -1,13 +1,15 @@
+import type { News } from "../types/news";
+
 export default class GetNewsService {
-  getNews() {
+  async getNews(): Promise<News[]> {
     return fetch("/data/news.json")
-      .then((response) => {
+      .then((response: Response) => {
         if (!response.ok) {
           throw new Error("Ошибка загрузки News.json");
         }
-        return response.json();
+        return response.json() as Promise<News[]>;
       })
-      .catch((error) => {
+      .catch((error: Error) => {
         console.error("Ошибка в GetNewsService:", error);
         throw error;
       });

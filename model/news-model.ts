@@ -1,33 +1,36 @@
-import NewsService from "../services/NewsService.js";
+import GetNewsService from "../service/get-news-service.js";
+import type { News } from "../types/news";
 
 export default class NewsModel {
-  constructor(currentService) {
-    if (!сurrentService) {
+  service: GetNewsService;
+
+  constructor(currentService: GetNewsService) {
+    if (!currentService) {
       throw new Error("Ошибка NewsModel: сервис не получен");
     }
     this.service = currentService;
   }
 
-  getAllNews() {
-    return this.service.getNews().then(function (newsArray) {
+  getAllNews(): Promise<News[]>{
+    return this.service.getNews().then(function (newsArray: News[]) {
       return newsArray;
     });
   }
 
-  getAllNewsSorted() {
+  getAllNewsSorted(): Promise<News[]> {
     return this.service.getNews().then(function (newsArray) {
       const newsArrayProcessed = newsArray.slice();
       newsArrayProcessed.sort(function (firstItem, secondItem) {
-        return new Date(secondItem.date) - new Date(firstItem.date);
+        return new Date(secondItem.date).getTime() - new Date(firstItem.date).getTime();
       });
       return newsArrayProcessed;
     });
   }
 
-  getNewsById(newsId) {
-    return this.service.getNews().then(function (newsArray) {
+  getNewsById(newsId: number | string): Promise<News> {
+    return this.service.getNews().then(function (newsArray: News[]) {
       const selectedNews = newsArray.find(
-        (newsItem) => newsItem.id === Number(newsId),
+        (newsItem: News) => newsItem.id === Number(newsId),
       );
 
       if (!selectedNews) {
@@ -38,8 +41,8 @@ export default class NewsModel {
     });
   }
 
-  getLastNews() {
-    return this.getAllSorted().then(function (sortedNewsArray) {
+  getLastNews(): Promise<News> {
+    return this.getAllNewsSorted().then(function (sortedNewsArray: News[]) {
       if (!sortedNewsArray[0]) {
         throw new Error("Ошибка getLastNews: новость не найдена");
       }
@@ -47,16 +50,16 @@ export default class NewsModel {
     });
   }
 
-  getAllNewsCounted() {
-    return this.service.getNews().then(function (newsArray) {
+  getAllNewsCounted(): Promise<number> {
+    return this.service.getNews().then(function (newsArray: News[]) {
       return newsArray.length;
     });
   }
 
-  getPaginationData(requiredPage, newsPerPage) {
-    return this.getAllSorted()
+  getPaginationData(requiredPage: number, newsPerPage: number): Promise<News[]> {
+    return this.getAllNewsSorted()
 
-      .then(function (sortedNewsArray) {
+      .then(function (sortedNewsArray: News[]) {
         const newsCount = sortedNewsArray.length;
         const pagesCount = Math.ceil(newsCount / newsPerPage);
 
@@ -69,8 +72,8 @@ export default class NewsModel {
           currentPage = pagesCount;
         }
 
-        let paginatedNewsArray = [];
-        let itemsPerPageArray = [];
+        let paginatedNewsArray: News [][] = [];
+        let itemsPerPageArray: News [] = [];
 
         for (let i = 0; i < newsCount; i++) {
           itemsPerPageArray.push(sortedNewsArray[i]);
