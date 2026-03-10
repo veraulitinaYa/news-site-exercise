@@ -1,5 +1,5 @@
 import GetNewsService from "../service/get-news-service.js";
-import type { News } from "../types/news";
+import type { News } from "../types/news.js";
 
 export default class NewsModel {
   service: GetNewsService;

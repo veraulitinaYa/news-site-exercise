@@ -2,25 +2,36 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="./styles/fonts.css" />
-  <link rel="stylesheet" href="./styles/variables.css" />
-  <link rel="stylesheet" href="./styles/globals.css" />
-  <link rel="stylesheet" href="./styles/header-style.css" />
-  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="./src/styles/fonts.css" />
+  <link rel="stylesheet" href="./src/styles/variables.css" />
+  <link rel="stylesheet" href="./src/styles/globals.css" />
+  <link rel="stylesheet" href="./src/styles/header-style.css" />
+  <link rel="stylesheet" href="./src/styles/style.css" />
   <title>Галактический вестник</title>
 </head>
 <html lang="ru">
   <body>
-    <header class="header_body">
+    <div id="header-container">
+    </div>
+      <main id="main">
+        </main>
+      <footer id="footer">
+        </footer>
+    <template id="header-template">
+      <header class="header_body">
         <div class="header_logo_container">
-      <img src="./data/images/logo/logo-with-text.svg" alt="logo" class="header_logo" />
-      </div>
-    </header>
+          <img class="header_logo" />
+        </div>
+      </header>
+    </template>
     <template id="main-page"></template>
     <template id="news-contents-page"></template>
     <template id="news-list"></template>
     <template id="news-card-normal"></template>
     <template id="news-card-top"></template>
     <template id="news-card-detailed"></template>
+    <template id="footer-template"></template>
+
+    <script type="module" src="./dist/index.js"></script>
   </body>
 </html>
