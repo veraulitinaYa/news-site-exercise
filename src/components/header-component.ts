@@ -1,15 +1,16 @@
 import { BaseComponent } from "./base-component.js";
-import { HeaderData } from "../types/components"
+import { HeaderData } from "../types/components";
 
 export class Header extends BaseComponent<HeaderData> {
-
   private headerElement: HTMLElement;
   private logoElement: HTMLImageElement;
 
   constructor(container: HTMLElement, template: HTMLTemplateElement) {
     super(container);
 
-    const element = template.content.firstElementChild!.cloneNode(true) as HTMLElement;
+    const element = template.content.firstElementChild!.cloneNode(
+      true,
+    ) as HTMLElement;
 
     this.headerElement = element;
     this.logoElement = element.querySelector(".header_logo")!;
@@ -23,6 +24,6 @@ export class Header extends BaseComponent<HeaderData> {
 
   set isBorderShown(value: boolean) {
     this.container;
-this.headerElement.classList.toggle("header_body--border", value);
+    this.headerElement.classList.toggle("header_body--border", value);
   }
-  }
+}
