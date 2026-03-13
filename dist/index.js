@@ -14,10 +14,13 @@ import NewsModel from "./model/news-model.js";
 import { NewsList } from "./components/news-list-component.js";
 const headerContainer = document.querySelector("#header-container");
 const headerTemplate = document.querySelector("#header-template");
+//TODO нужно отрефакторить переменные-------------------------------------------------------
 const header = new Header(headerContainer, headerTemplate);
 const container = document.querySelector("#news-item-test-container");
 const listcontainer = document.querySelector("#news-list-test-container");
 const listTemplate = document.querySelector("#news-list-template");
+const detailsContainer = document.querySelector("#news-card-detailed-test-container");
+const bannerContainer = document.querySelector("#news-card-detailed-test-container");
 header.render({
     logoImagePath: "./src/data/images/logo/logo-with-text.svg",
     isBorderShown: false,
@@ -40,5 +43,23 @@ function showTestCardList() {
         newsList.render(news);
     });
 }
+function showTestDetailedCard() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const card = new NewsCard(detailsContainer, template, "details");
+        const newsModel = new NewsModel(new GetNewsService());
+        const news = yield newsModel.getNewsById(1);
+        card.setData(news);
+    });
+}
+function showTestBannerCard() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const card = new NewsCard(bannerContainer, template, "banner");
+        const newsModel = new NewsModel(new GetNewsService());
+        const news = yield newsModel.getNewsById(1);
+        card.setData(news);
+    });
+}
 showTestCard();
 showTestCardList();
+showTestDetailedCard();
+showTestBannerCard();

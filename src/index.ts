@@ -20,6 +20,9 @@ const listTemplate = document.querySelector(
   "#news-list-template",
 ) as HTMLTemplateElement;
 
+const detailsContainer = document.querySelector("#news-card-detailed-test-container") as HTMLElement;
+
+const bannerContainer = document.querySelector("#news-card-detailed-test-container") as HTMLElement;
 
 header.render({
   logoImagePath: "./src/data/images/logo/logo-with-text.svg",
@@ -53,6 +56,28 @@ newsList.render(news);
 
 }
 
+async function showTestDetailedCard(){
+   const card = new NewsCard(detailsContainer, template, "details");
+
+  const newsModel = new NewsModel(new GetNewsService());
+
+  const news = await newsModel.getNewsById(1);
+
+  card.setData(news);
+}
+
+async function showTestBannerCard(){
+   const card = new NewsCard(bannerContainer, template, "banner");
+
+  const newsModel = new NewsModel(new GetNewsService());
+
+  const news = await newsModel.getNewsById(1);
+
+  card.setData(news);
+}
+
 
 showTestCard();
 showTestCardList();
+showTestDetailedCard();
+showTestBannerCard();
