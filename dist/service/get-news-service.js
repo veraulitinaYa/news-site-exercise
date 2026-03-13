@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 export default class GetNewsService {
     getNews() {
         return __awaiter(this, void 0, void 0, function* () {
-            return fetch("/data/news.json")
+            return fetch("/src/data/news/news.json")
                 .then((response) => {
                 if (!response.ok) {
                     throw new Error("Ошибка загрузки News.json");
