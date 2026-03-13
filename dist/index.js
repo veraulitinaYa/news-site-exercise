@@ -11,10 +11,13 @@ import { Header } from "./components/header-component.js";
 import { NewsCard } from "./components/news-card-component.js";
 import GetNewsService from "./service/get-news-service.js";
 import NewsModel from "./model/news-model.js";
+import { NewsList } from "./components/news-list-component.js";
 const headerContainer = document.querySelector("#header-container");
 const headerTemplate = document.querySelector("#header-template");
 const header = new Header(headerContainer, headerTemplate);
-const container = document.querySelector("#news-card-test-container");
+const container = document.querySelector("#news-item-test-container");
+const listcontainer = document.querySelector("#news-list-test-container");
+const listTemplate = document.querySelector("#news-list-template");
 header.render({
     logoImagePath: "./src/data/images/logo/logo-with-text.svg",
     isBorderShown: false,
@@ -29,4 +32,13 @@ function showTestCard() {
         // card.render();
     });
 }
+function showTestCardList() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const newsModel = new NewsModel(new GetNewsService());
+        const news = yield newsModel.getAllNews();
+        const newsList = new NewsList(listcontainer, template);
+        newsList.render(news);
+    });
+}
 showTestCard();
+showTestCardList();

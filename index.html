@@ -11,13 +11,12 @@
 </head>
 <html lang="ru">
   <body>
-    <div id="header-container">
-    </div>
-      <main id="main">
-        <div id="news-card-test-container"></div>
-        </main>
-      <footer id="footer">
-        </footer>
+    <div id="header-container"></div>
+    <main id="main">
+      <div id="news-item-test-container"></div>
+      <div id="news-list-test-container"></div>
+    </main>
+    <footer id="footer"></footer>
     <template id="header-template">
       <header class="header_body">
         <div class="header_logo_container">
@@ -27,22 +26,20 @@
     </template>
     <template id="main-page"></template>
     <template id="news-details-page"></template>
-    <template id="news-list">
+    <template id="news-list-template">
       <h2 class="news_list_title">Новости</h2>
     </template>
     <template id="news-card-item-template">
-  <div class="news-card">
-    <span class="news-card-date"></span>
+      <div class="news-card">
+        <span class="news-card-date"></span>
 
-    <h3 class="news-card-title"></h3>
+        <h3 class="news-card-title"></h3>
 
-    <span class="news-card-announce"></span>
+        <span class="news-card-announce"></span>
 
-    <button class="news-card-details-button">
-      Подробнее
-    </button>
-  </div>
-</template>
+        <button class="news-card-details-button">Подробнее</button>
+      </div>
+    </template>
     <template id="news-card-banner"></template>
     <template id="news-card-detailed"></template>
     <template id="footer-template"></template>

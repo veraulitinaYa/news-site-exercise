@@ -54,9 +54,9 @@ constructor(container: HTMLElement, cardTemplate: HTMLTemplateElement, cardVaria
       this.cardTitle = cardElement.querySelector(".news-card-title")!;
       this.cardAnnounce = cardElement.querySelector(".news-card-announce")!;
       this.cardDate = cardElement.querySelector(".news-card-date")!;
-      this.cardContent = cardElement.querySelector(".news-card_content")!;
+      this.cardContent = cardElement.querySelector(".news-card-content")!;
 
-      this.backButton = cardElement.querySelector(".news-card_back_button")!;
+      this.backButton = cardElement.querySelector(".news-card-back-button")!;
     }
   }
 
