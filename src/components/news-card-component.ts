@@ -38,8 +38,9 @@ constructor(container: HTMLElement, cardTemplate: HTMLTemplateElement, cardVaria
 
 
     if (cardVariantType === "banner") {
-      this.cardImage = cardElement.querySelector(".news-card_image")!;
+      this.cardImage = cardElement.querySelector(".news-card-image")!;
       this.cardTitle = cardElement.querySelector(".news-card-title")!;
+      this.cardAnnounce = cardElement.querySelector(".news-card-announce")!;
     }
 
     if (cardVariantType === "item") {
@@ -50,7 +51,7 @@ constructor(container: HTMLElement, cardTemplate: HTMLTemplateElement, cardVaria
     }
 
     if (cardVariantType === "details") {
-      this.cardImage = cardElement.querySelector(".news-card_image")!;
+      this.cardImage = cardElement.querySelector(".news-card-image")!;
       this.cardTitle = cardElement.querySelector(".news-card-title")!;
       this.cardAnnounce = cardElement.querySelector(".news-card-announce")!;
       this.cardDate = cardElement.querySelector(".news-card-date")!;
@@ -72,7 +73,7 @@ this.cardTitle.textContent = newsData.title;
     }
 
     if (this.cardImage && "image" in newsData) {
-      this.cardImage.src = newsData.image;
+        this.cardImage.src = `/src/data/images/${newsData.image}`;
     }
 
     if (this.cardContent && "content" in newsData) {

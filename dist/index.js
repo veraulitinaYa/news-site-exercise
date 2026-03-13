@@ -20,12 +20,14 @@ const container = document.querySelector("#news-item-test-container");
 const listcontainer = document.querySelector("#news-list-test-container");
 const listTemplate = document.querySelector("#news-list-template");
 const detailsContainer = document.querySelector("#news-card-detailed-test-container");
-const bannerContainer = document.querySelector("#news-card-detailed-test-container");
+const bannerContainer = document.querySelector("#news-card-banner-test-container");
 header.render({
     logoImagePath: "./src/data/images/logo/logo-with-text.svg",
     isBorderShown: false,
 });
 const template = document.querySelector("#news-card-item-template");
+const templateBanner = document.querySelector("#news-card-banner");
+const templateDetailed = document.querySelector("#news-card-detailed");
 function showTestCard() {
     return __awaiter(this, void 0, void 0, function* () {
         const card = new NewsCard(container, template, "item");
@@ -45,7 +47,7 @@ function showTestCardList() {
 }
 function showTestDetailedCard() {
     return __awaiter(this, void 0, void 0, function* () {
-        const card = new NewsCard(detailsContainer, template, "details");
+        const card = new NewsCard(detailsContainer, templateDetailed, "details");
         const newsModel = new NewsModel(new GetNewsService());
         const news = yield newsModel.getNewsById(1);
         card.setData(news);
@@ -53,7 +55,7 @@ function showTestDetailedCard() {
 }
 function showTestBannerCard() {
     return __awaiter(this, void 0, void 0, function* () {
-        const card = new NewsCard(bannerContainer, template, "banner");
+        const card = new NewsCard(bannerContainer, templateBanner, "banner");
         const newsModel = new NewsModel(new GetNewsService());
         const news = yield newsModel.getNewsById(1);
         card.setData(news);

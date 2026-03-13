@@ -22,7 +22,7 @@ const listTemplate = document.querySelector(
 
 const detailsContainer = document.querySelector("#news-card-detailed-test-container") as HTMLElement;
 
-const bannerContainer = document.querySelector("#news-card-detailed-test-container") as HTMLElement;
+const bannerContainer = document.querySelector("#news-card-banner-test-container") as HTMLElement;
 
 header.render({
   logoImagePath: "./src/data/images/logo/logo-with-text.svg",
@@ -33,7 +33,13 @@ const template = document.querySelector(
   "#news-card-item-template",
 ) as HTMLTemplateElement;
 
+const templateBanner = document.querySelector(
+  "#news-card-banner",
+) as HTMLTemplateElement;
 
+const templateDetailed = document.querySelector(
+  "#news-card-detailed",
+) as HTMLTemplateElement;
 
 async function showTestCard() {
   const card = new NewsCard(container, template, "item");
@@ -57,7 +63,7 @@ newsList.render(news);
 }
 
 async function showTestDetailedCard(){
-   const card = new NewsCard(detailsContainer, template, "details");
+   const card = new NewsCard(detailsContainer, templateDetailed, "details");
 
   const newsModel = new NewsModel(new GetNewsService());
 
@@ -67,7 +73,7 @@ async function showTestDetailedCard(){
 }
 
 async function showTestBannerCard(){
-   const card = new NewsCard(bannerContainer, template, "banner");
+   const card = new NewsCard(bannerContainer, templateBanner, "banner");
 
   const newsModel = new NewsModel(new GetNewsService());
 

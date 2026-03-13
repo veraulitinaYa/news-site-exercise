@@ -42,8 +42,24 @@
         <button class="news-card-details-button">Подробнее</button>
       </div>
     </template>
-    <template id="news-card-banner"></template>
-    <template id="news-card-detailed"></template>
+    <template id="news-card-banner">
+      <div class="news-card">
+        <img class="news-card-image" />
+        <h3 class="news-card-title"></h3>
+        <span class="news-card-announce"></span>
+      </div>
+    </template>
+    <template id="news-card-detailed">
+      <div class="news-card">
+        <h3 class="news-card-title"></h3>
+        <span class="news-card-date"></span>
+        <img class="news-card-image" />
+        <span class="news-card-announce"></span>
+        <span class="news-card-content"></span>
+
+        <button class="news-card-details-button">Подробнее</button>
+      </div>
+    </template>
     <template id="footer-template"></template>
 
     <script type="module" src="./dist/index.js"></script>
