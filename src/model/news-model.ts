@@ -56,7 +56,7 @@ export default class NewsModel {
     });
   }
 
-  getPaginationData(requiredPage: number, newsPerPage: number): Promise<News[]> {
+  getPaginationData(requiredPage: number, newsPerPage: number): Promise<News[][]> {
     return this.getAllNewsSorted()
 
       .then(function (sortedNewsArray: News[]) {
@@ -87,9 +87,9 @@ export default class NewsModel {
           paginatedNewsArray.push(itemsPerPageArray);
         }
 
-        const newsArrayForCurrentPage = paginatedNewsArray[currentPage - 1];
-
-        return newsArrayForCurrentPage;
+       // const newsArrayForCurrentPage = paginatedNewsArray[currentPage - 1];
+const abc = paginatedNewsArray;
+        return abc;
       });
   }
 }

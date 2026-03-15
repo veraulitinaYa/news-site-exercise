@@ -12,6 +12,7 @@ import { NewsCard } from "./components/news-card-component.js";
 import GetNewsService from "./service/get-news-service.js";
 import NewsModel from "./model/news-model.js";
 import { NewsList } from "./components/news-list-component.js";
+import { Paginator } from "./components/paginator-component.js";
 const headerContainer = document.querySelector("#header-container");
 const headerTemplate = document.querySelector("#header-template");
 //TODO нужно отрефакторить переменные-------------------------------------------------------
@@ -21,6 +22,7 @@ const listcontainer = document.querySelector("#news-list-test-container");
 const listTemplate = document.querySelector("#news-list-template");
 const detailsContainer = document.querySelector("#news-card-detailed-test-container");
 const bannerContainer = document.querySelector("#news-card-banner-test-container");
+const paginatorContainer = document.querySelector("#paginator-test-container");
 header.render({
     logoImagePath: "./src/data/images/logo/logo-with-text.svg",
     isBorderShown: false,
@@ -61,7 +63,18 @@ function showTestBannerCard() {
         card.setData(news);
     });
 }
+function showPaginator() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const newsModel = new NewsModel(new GetNewsService());
+        const pages = yield newsModel.getPaginationData(1, 4);
+        const paginator = new Paginator(paginatorContainer);
+        paginator.setPagesCount(pages.length);
+        paginator.render();
+        paginator.goToPage(1);
+    });
+}
 showTestCard();
 showTestCardList();
 showTestDetailedCard();
 showTestBannerCard();
+showPaginator();

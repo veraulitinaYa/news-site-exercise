@@ -65,8 +65,9 @@ export default class NewsModel {
             if (itemsPerPageArray.length > 0) {
                 paginatedNewsArray.push(itemsPerPageArray);
             }
-            const newsArrayForCurrentPage = paginatedNewsArray[currentPage - 1];
-            return newsArrayForCurrentPage;
+            // const newsArrayForCurrentPage = paginatedNewsArray[currentPage - 1];
+            const abc = paginatedNewsArray;
+            return abc;
         });
     }
 }
