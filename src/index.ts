@@ -4,6 +4,7 @@ import GetNewsService from "./service/get-news-service.js";
 import NewsModel from "./model/news-model.js";
 import { NewsList } from "./components/news-list-component.js";
 import { Paginator } from "./components/paginator-component.js";
+import { Footer } from "./components/footer-component.js";
 
 const headerContainer = document.querySelector(
   "#header-container",
@@ -31,6 +32,16 @@ const paginatorContainer = document.querySelector(
 header.render({
   logoImagePath: "./src/data/images/logo/logo-with-text.svg",
   isBorderShown: false,
+});
+
+const footerContainer = document.querySelector("#footer") as HTMLElement;
+const footerContainerTemplate = document.querySelector(
+  "#footer-template",
+) as HTMLTemplateElement;
+const footer = new Footer(footerContainer, footerContainerTemplate);
+
+footer.render({
+  copyrightText: "fsdsgfgddgfsfsdg",
 });
 
 const template = document.querySelector(
@@ -98,6 +109,8 @@ async function showPaginator() {
 
   paginator.goToPage(1);
 }
+
+
 
 showTestCard();
 showTestCardList();

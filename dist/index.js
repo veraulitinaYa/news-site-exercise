@@ -13,6 +13,7 @@ import GetNewsService from "./service/get-news-service.js";
 import NewsModel from "./model/news-model.js";
 import { NewsList } from "./components/news-list-component.js";
 import { Paginator } from "./components/paginator-component.js";
+import { Footer } from "./components/footer-component.js";
 const headerContainer = document.querySelector("#header-container");
 const headerTemplate = document.querySelector("#header-template");
 //TODO нужно отрефакторить переменные-------------------------------------------------------
@@ -26,6 +27,12 @@ const paginatorContainer = document.querySelector("#paginator-test-container");
 header.render({
     logoImagePath: "./src/data/images/logo/logo-with-text.svg",
     isBorderShown: false,
+});
+const footerContainer = document.querySelector("#footer");
+const footerContainerTemplate = document.querySelector("#footer-template");
+const footer = new Footer(footerContainer, footerContainerTemplate);
+footer.render({
+    copyrightText: "fsdsgfgddgfsfsdg",
 });
 const template = document.querySelector("#news-card-item-template");
 const templateBanner = document.querySelector("#news-card-banner");
