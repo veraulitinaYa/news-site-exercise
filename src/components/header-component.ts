@@ -13,7 +13,7 @@ export class Header extends BaseComponent<HeaderData> {
     ) as HTMLElement;
 
     this.headerElement = element;
-    this.logoElement = element.querySelector(".header_logo")!;
+    this.logoElement = element.querySelector(".header-logo")!;
 
     this.container.append(element);
   }
@@ -24,6 +24,6 @@ export class Header extends BaseComponent<HeaderData> {
 
   set isBorderShown(value: boolean) {
     this.container;
-    this.headerElement.classList.toggle("header_body--border", value);
+    this.headerElement.classList.toggle("header-body--border", value);
   }
 }

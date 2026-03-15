@@ -4,7 +4,7 @@ export class Header extends BaseComponent {
         super(container);
         const element = template.content.firstElementChild.cloneNode(true);
         this.headerElement = element;
-        this.logoElement = element.querySelector(".header_logo");
+        this.logoElement = element.querySelector(".header-logo");
         this.container.append(element);
     }
     set logoImagePath(src) {
@@ -12,6 +12,6 @@ export class Header extends BaseComponent {
     }
     set isBorderShown(value) {
         this.container;
-        this.headerElement.classList.toggle("header_body--border", value);
+        this.headerElement.classList.toggle("header-body--border", value);
     }
 }
