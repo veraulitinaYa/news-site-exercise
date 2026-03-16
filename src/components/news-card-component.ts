@@ -8,7 +8,7 @@ type NewsCardData = TNewsCardBanner | TNewsCardItem | TNewsCardDetails;
 export class NewsCard extends BaseComponent<NewsCardData> {
   protected cardVariant: CardType;
   protected cardId!: number;
-
+  protected cardElement!: HTMLElement;  //!!!!!!!!!
 
   //общие элементы
   protected cardTitle!: HTMLElement;
@@ -33,31 +33,31 @@ constructor(container: HTMLElement, cardTemplate: HTMLTemplateElement, cardVaria
 
     this.cardVariant = cardVariantType;
 
-    const cardElement = cardTemplate.content.firstElementChild!.cloneNode(true) as HTMLElement;
-    this.container.append(cardElement);
+    this.cardElement = cardTemplate.content.firstElementChild!.cloneNode(true) as HTMLElement;
+    this.container.append(this.cardElement);
 
 
     if (cardVariantType === "banner") {
-      this.cardImage = cardElement.querySelector(".news-card-image")!;
-      this.cardTitle = cardElement.querySelector(".news-card-title")!;
-      this.cardAnnounce = cardElement.querySelector(".news-card-announce")!;
+      this.cardImage = this.cardElement.querySelector(".news-card-image")!;
+      this.cardTitle = this.cardElement.querySelector(".news-card-title")!;
+      this.cardAnnounce = this.cardElement.querySelector(".news-card-announce")!;
     }
 
     if (cardVariantType === "item") {
-      this.cardTitle = cardElement.querySelector(".news-card-title")!;
-      this.cardAnnounce = cardElement.querySelector(".news-card-announce")!;
-      this.cardDate = cardElement.querySelector(".news-card-date")!;
-      this.detailsButton = cardElement.querySelector(".news-card-details-button")!;
+      this.cardTitle = this.cardElement.querySelector(".news-card-title")!;
+      this.cardAnnounce = this.cardElement.querySelector(".news-card-announce")!;
+      this.cardDate = this.cardElement.querySelector(".news-card-date")!;
+      this.detailsButton = this.cardElement.querySelector(".news-card-details-button")!;
     }
 
     if (cardVariantType === "details") {
-      this.cardImage = cardElement.querySelector(".news-card-image")!;
-      this.cardTitle = cardElement.querySelector(".news-card-title")!;
-      this.cardAnnounce = cardElement.querySelector(".news-card-announce")!;
-      this.cardDate = cardElement.querySelector(".news-card-date")!;
-      this.cardContent = cardElement.querySelector(".news-card-content")!;
+      this.cardImage = this.cardElement.querySelector(".news-card-image")!;
+      this.cardTitle = this.cardElement.querySelector(".news-card-title")!;
+      this.cardAnnounce = this.cardElement.querySelector(".news-card-announce")!;
+      this.cardDate = this.cardElement.querySelector(".news-card-date")!;
+      this.cardContent = this.cardElement.querySelector(".news-card-content")!;
 
-      this.backButton = cardElement.querySelector(".news-card-back-button")!;
+      this.backButton = this.cardElement.querySelector(".news-card-back-button")!;
     }
   }
 
@@ -82,11 +82,21 @@ this.cardTitle.textContent = newsData.title;
   }
 
  set onDetailsClick(handler: (id: number) => void) {
-    if (this.detailsButton) {
-      this.detailsButton.addEventListener("click", () => handler(this.cardId));
-    }
+  if (this.detailsButton) {
+    this.detailsButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+      handler(this.cardId);
+    });
+  }
   }
 
+  set onCardItemClick(handler: (id: number) => void) {
+    if (this.cardVariant == "item") { 
+    this.cardElement.addEventListener("click", (event) => {
+      handler(this.cardId);
+    });
+  }
+  }
   set onBackClick(handler: () => void) {
     if (this.backButton) {
       this.backButton.addEventListener("click", handler);

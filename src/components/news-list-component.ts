@@ -26,7 +26,11 @@ newsCardArray.forEach((newsCardItem) => {
       card.setData(newsCardItem);
 
      card.onDetailsClick = (id: number) => {
-        console.log("Переход на страницу новости с id:",id);
+        console.log("Клик по кнопке:",id);
+      }
+
+      card.onCardItemClick = (id: number) => {
+        console.log("Клик по карточке:",id);
       }
       this.cardsToShow.push(card);
      
