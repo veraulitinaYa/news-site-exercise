@@ -33,6 +33,13 @@ const itemTemplate = document.querySelector(
 const detailsTemplate = document.querySelector(
   "#news-card-detailed-template",
 ) as HTMLTemplateElement;
+const newsListTemplate = document.querySelector(
+  "#news-list-template",
+) as HTMLTemplateElement;
+const breadcrumbsTemplate = document.querySelector(
+  "#breadcrumbs-template",
+) as HTMLTemplateElement;
+  
 
 
 const logoImagePathString = "./src/data/images/logo/logo-with-text.svg";
@@ -85,7 +92,7 @@ async function showPaginator(pageToOpen: number = 1) {
 
 function showNewsPage(selectedNewsArray: News[], currentPage: number) {
    newsContainer.innerHTML = ""; 
-  const newsList = new NewsList(newsContainer, itemTemplate);
+  const newsList = new NewsList(newsContainer, itemTemplate, newsListTemplate);
   newsList.render(selectedNewsArray);
 
   newsList.getCards().forEach((card) => {
@@ -108,9 +115,22 @@ async function showNewsDetailsPage (newsId: number, accessedFromPage: number) {
   const newsModel = new NewsModel(new GetNewsService());
   const news = await newsModel.getNewsById(newsId);
 
+const breadcrumbs = breadcrumbsTemplate.content.firstElementChild!.cloneNode(true) as HTMLElement;
+
   bannerContainer.innerHTML = "";
   newsContainer.innerHTML = "";
   paginatorContainer.innerHTML = "";
+
+ const homeLink = breadcrumbs.querySelector(".breadcrumbs-previous-page")!;
+  const current = breadcrumbs.querySelector(".breadcrumbs-current-news")!;
+
+  current.textContent = news.title;
+
+  homeLink.addEventListener("click", () => {
+    showPaginator(accessedFromPage);
+  });
+
+  newsContainer.append(breadcrumbs);
 
   const detailsCard = new NewsCard(
     newsContainer,

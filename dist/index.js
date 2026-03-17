@@ -24,6 +24,8 @@ const paginatorContainer = document.querySelector("#paginator-section");
 const bannerTemplate = document.querySelector("#news-card-banner-template");
 const itemTemplate = document.querySelector("#news-card-item-template");
 const detailsTemplate = document.querySelector("#news-card-detailed-template");
+const newsListTemplate = document.querySelector("#news-list-template");
+const breadcrumbsTemplate = document.querySelector("#breadcrumbs-template");
 const logoImagePathString = "./src/data/images/logo/logo-with-text.svg";
 const footerCopyrightTestString = "© 2023 — 2412 «Галактический вестник»";
 const header = new Header(headerContainer, headerTemplate);
@@ -65,7 +67,7 @@ function showPaginator() {
 }
 function showNewsPage(selectedNewsArray, currentPage) {
     newsContainer.innerHTML = "";
-    const newsList = new NewsList(newsContainer, itemTemplate);
+    const newsList = new NewsList(newsContainer, itemTemplate, newsListTemplate);
     newsList.render(selectedNewsArray);
     newsList.getCards().forEach((card) => {
         card.onDetailsClick = (id) => {
@@ -85,9 +87,17 @@ function showNewsDetailsPage(newsId, accessedFromPage) {
     return __awaiter(this, void 0, void 0, function* () {
         const newsModel = new NewsModel(new GetNewsService());
         const news = yield newsModel.getNewsById(newsId);
+        const breadcrumbs = breadcrumbsTemplate.content.firstElementChild.cloneNode(true);
         bannerContainer.innerHTML = "";
         newsContainer.innerHTML = "";
         paginatorContainer.innerHTML = "";
+        const homeLink = breadcrumbs.querySelector(".breadcrumbs-previous-page");
+        const current = breadcrumbs.querySelector(".breadcrumbs-current-news");
+        current.textContent = news.title;
+        homeLink.addEventListener("click", () => {
+            showPaginator(accessedFromPage);
+        });
+        newsContainer.append(breadcrumbs);
         const detailsCard = new NewsCard(newsContainer, detailsTemplate, "details");
         detailsCard.setData(news);
         detailsCard.onBackClick = () => {

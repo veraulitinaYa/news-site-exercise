@@ -6,10 +6,12 @@ export class NewsList extends BaseComponent<TNewsCardItem[]> {
 
 private cardsToShow: NewsCard[] = [];
 private cardTemplate: HTMLTemplateElement;
+private listTemplate: HTMLTemplateElement;
 
-  constructor(container: HTMLElement, template: HTMLTemplateElement) {
+  constructor(container: HTMLElement, template: HTMLTemplateElement, ltemplate: HTMLTemplateElement) {
     super(container);
     this.cardTemplate = template;
+    this.listTemplate = ltemplate;
   }
   override render(data?: Partial<TNewsCardItem[]>): HTMLElement {
 
@@ -19,6 +21,8 @@ private cardTemplate: HTMLTemplateElement;
 
     
  this.container.innerHTML = "";
+const titleElement = this.listTemplate.content.firstElementChild!.cloneNode(true);
+this.container.append(titleElement);
      this.cardsToShow = [];
 
 newsCardArray.forEach((newsCardItem) => {
