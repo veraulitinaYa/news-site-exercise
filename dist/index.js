@@ -49,6 +49,7 @@ footer.render({
 });
 function showPaginator() {
     return __awaiter(this, arguments, void 0, function* (pageToOpen = 1) {
+        header.isBorderShown = false;
         const newsModel = new NewsModel(new GetNewsService());
         const pages = yield newsModel.getPaginationData(1, 4);
         const paginator = new Paginator(paginatorContainer);
@@ -85,6 +86,7 @@ function showBanner(newsItemBanner) {
 }
 function showNewsDetailsPage(newsId, accessedFromPage) {
     return __awaiter(this, void 0, void 0, function* () {
+        header.isBorderShown = true;
         const newsModel = new NewsModel(new GetNewsService());
         const news = yield newsModel.getNewsById(newsId);
         const breadcrumbs = breadcrumbsTemplate.content.firstElementChild.cloneNode(true);

@@ -71,6 +71,7 @@ footer.render({
 });
 
 async function showPaginator(pageToOpen: number = 1) {
+  header.isBorderShown = false;
   const newsModel = new NewsModel(new GetNewsService());
   const pages = await newsModel.getPaginationData(1, 4);
   const paginator = new Paginator(paginatorContainer);
@@ -112,6 +113,7 @@ function showBanner (newsItemBanner: News) {
 }
 
 async function showNewsDetailsPage (newsId: number, accessedFromPage: number) {
+  header.isBorderShown = true;
   const newsModel = new NewsModel(new GetNewsService());
   const news = await newsModel.getNewsById(newsId);
 
