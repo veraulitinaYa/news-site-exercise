@@ -1,0 +1,15 @@
+:root {
+  --font-primary: "Open Sans", sans-serif;
+  --font-primary-regular: 400;
+  --font-primary-semibold: 600;
+
+  --color-text: #000;
+  --color-banner-text: #fff;
+  --color-background: #fff;
+  --color-accent: #841844;
+  --color-accent-accent: #9b407a;
+  --color-date-background: #ecf2f5;
+  --color-date-text: #6c6e7b;
+
+  --color-border: #6c6e7b;
+}
