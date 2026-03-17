@@ -20,8 +20,8 @@ const footerTemplate = document.querySelector(
 const bannerContainer = document.querySelector(
   "#banner-section",
 ) as HTMLElement;
-const newsListContainer = document.querySelector(
-  "#news-list-page-section",
+const newsContainer = document.querySelector(
+  "#news-section",
 ) as HTMLElement;
 const paginatorContainer = document.querySelector(
   "#paginator-section",
@@ -29,6 +29,9 @@ const paginatorContainer = document.querySelector(
 const bannerTemplate = document.querySelector("#news-card-banner-template") as HTMLTemplateElement;
 const itemTemplate = document.querySelector(
   "#news-card-item-template",
+) as HTMLTemplateElement;
+const detailsTemplate = document.querySelector(
+  "#news-card-detailed-template",
 ) as HTMLTemplateElement;
 
 
@@ -60,7 +63,7 @@ footer.render({
   copyrightText: footerCopyrightTestString,
 });
 
-async function showPaginator() {
+async function showPaginator(pageToOpen: number = 1) {
   const newsModel = new NewsModel(new GetNewsService());
   const pages = await newsModel.getPaginationData(1, 4);
   const paginator = new Paginator(paginatorContainer);
@@ -68,22 +71,58 @@ async function showPaginator() {
   paginator.onPageNumberClick = (page) => {
     const clickedNewsArray = pages[page - 1];
     showBanner(clickedNewsArray[0]);
-    showNewsPage(pages[page - 1]);
+    showNewsPage(clickedNewsArray, page);
   }
   paginator.render();
-  paginator.goToPage(1);
+  
+
+  paginator.goToPage(pageToOpen);
+    const clickedNewsArray = pages[pageToOpen - 1];
+  showBanner(clickedNewsArray[0]);
+  showNewsPage(clickedNewsArray, pageToOpen);
+
 }
 
-function showNewsPage(selectedNewsArray: News[]) {
-   newsListContainer.innerHTML = ""; 
-  const newsList = new NewsList(newsListContainer, itemTemplate);
+function showNewsPage(selectedNewsArray: News[], currentPage: number) {
+   newsContainer.innerHTML = ""; 
+  const newsList = new NewsList(newsContainer, itemTemplate);
   newsList.render(selectedNewsArray);
+
+  newsList.getCards().forEach((card) => {
+    card.onDetailsClick = (id: number) => {
+      showNewsDetailsPage(id, currentPage);
+    };
+    card.onCardItemClick = (id: number) => {
+      showNewsDetailsPage(id, currentPage);
+    }
+  })
 }
 
 function showBanner (newsItemBanner: News) {
   bannerContainer.innerHTML = "";
   const banner = new NewsCard(bannerContainer, bannerTemplate, "banner");
   banner.setData(newsItemBanner);
+}
+
+async function showNewsDetailsPage (newsId: number, accessedFromPage: number) {
+  const newsModel = new NewsModel(new GetNewsService());
+  const news = await newsModel.getNewsById(newsId);
+
+  bannerContainer.innerHTML = "";
+  newsContainer.innerHTML = "";
+  paginatorContainer.innerHTML = "";
+
+  const detailsCard = new NewsCard(
+    newsContainer,
+    detailsTemplate,
+    "details"
+  );
+
+  detailsCard.setData(news);
+
+  detailsCard.onBackClick = () => {
+    showPaginator(accessedFromPage);
+  };
 }
 
 // const template = document.querySelector(
