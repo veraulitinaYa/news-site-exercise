@@ -21,12 +21,17 @@ private listTemplate: HTMLTemplateElement;
 
     
  this.container.innerHTML = "";
-const titleElement = this.listTemplate.content.firstElementChild!.cloneNode(true);
-this.container.append(titleElement);
+const listElement = this.listTemplate.content.firstElementChild!.cloneNode(true) as HTMLElement;
+
+
+
+ const cardsContainer = document.createElement("div");
+    cardsContainer.classList.add("news_list");
+    listElement.append(cardsContainer);
      this.cardsToShow = [];
 
 newsCardArray.forEach((newsCardItem) => {
-      const card = new NewsCard(this.container, this.cardTemplate, "item");
+      const card = new NewsCard(cardsContainer, this.cardTemplate, "item");
       card.setData(newsCardItem);
 
      card.onDetailsClick = (id: number) => {
@@ -42,7 +47,7 @@ newsCardArray.forEach((newsCardItem) => {
     
 
     });
-
+ this.container.append(listElement);
     return this.container;
   }
 

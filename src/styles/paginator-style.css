@@ -1,0 +1,9 @@
+.paginator-section-style {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 200px;
+    padding-left: 200px;
+    padding-top: 83px;
+    padding-bottom: 83px;
+}

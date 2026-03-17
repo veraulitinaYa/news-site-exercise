@@ -1,0 +1,34 @@
+.news-card-banner-style {
+  display: flex;
+  width: 100%;
+  height: 646px;
+  flex-direction: column;
+
+}
+
+.news-card-banner-image-style {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  
+}
+
+.news-card-banner-text-style {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  margin-top: 218px;
+  margin-left: 195px;
+  gap: 30px;
+}
+
+
+.news-card-banner-title-style {
+color: var(--color-banner-text);
+}
+
+.news-card-banner-announce-style {
+ color: var(--color-banner-text);
+}

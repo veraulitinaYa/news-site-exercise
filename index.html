@@ -6,72 +6,98 @@
   <link rel="stylesheet" href="./src/styles/variables.css" />
   <link rel="stylesheet" href="./src/styles/globals.css" />
   <link rel="stylesheet" href="./src/styles/header-style.css" />
-  <link rel="stylesheet" href="./src/styles/style.css" />
+  <link rel="stylesheet" href="./src/styles/banner-style.css" />
+  <link rel="stylesheet" href="./src/styles/list-style.css" />
+  <link rel="stylesheet" href="./src/styles/details-style.css" />
+  <link rel="stylesheet" href="./src/styles/paginator-style.css" />
+  <link rel="stylesheet" href="./src/styles/breadcrumbs-style.css" />
+  <link rel="stylesheet" href="./src/styles/footer-style.css" />
   <title>Галактический вестник</title>
 </head>
 <html lang="ru">
-  <body>
-    <div id="header-container"></div>
+   
+    <!-- Контейнеры -->
+    
+    <header id="header-container"></header>
     <main id="main">
       <div id="banner-section"></div>
       <div id="news-section"></div>
-      <div id="paginator-section"></div>
+      <div id="paginator-section" class="paginator-section-style"></div>
     </main>
-    <footer id="footer"></footer>
+    <footer id="footer" class="footer-style"></footer>
+
+    <!-- Темплейты -->
+
+    <!-- Т: Хэдер -->
     <template id="header-template">
-      <header class="header-body">
+      <div class="header-body">
         <div class="header-logo-container">
           <img class="header-logo" />
         </div>
-      </header>
+      </div>
     </template>
-    <template id="main-page"></template>
-    <template id="news-details-page"></template>
+
+    <!-- Т: Список новостей -->
     <template id="news-list-template">
-      <h2 class="news_list_title">Новости</h2>
+      <div class="news_list news-list-style">
+      <h1 class="news_list_title">Новости</h1>
+      </div>
     </template>
+
+    <!-- Т: Карточка типа Айтем списка -->
     <template id="news-card-item-template">
       <div class="news-card">
         <span class="news-card-date"></span>
-
         <h3 class="news-card-title"></h3>
-
         <span class="news-card-announce"></span>
-
         <button class="news-card-details-button">Подробнее</button>
       </div>
     </template>
+
+    <!-- Т: Карточка типа Баннер -->
     <template id="news-card-banner-template">
-      <div class="news-card">
-        <img class="news-card-image" />
-        <h3 class="news-card-title"></h3>
-        <span class="news-card-announce"></span>
+      <div class="news-card news-card-banner-style">
+        <img class="news-card-image news-card-banner-image-style" />
+        <div class="news-card-banner-text-style">
+          <h1 class="news-card-title news-card-banner-title-style"></h1>
+          <span
+            class="news-card-announce news-card-banner-announce-style"
+          ></span>
+        </div>
       </div>
     </template>
-    <template id="news-card-detailed-template">
+
+    <!-- Т: Карточка типа Детальная -->
+    <template id="news-card-detailed-template">  
       <div class="news-card">
-        <h3 class="news-card-title"></h3>
+        <h1 class="news-card-title"></h1>
         <span class="news-card-date"></span>
         <img class="news-card-image" />
-        <span class="news-card-announce"></span>
+        <h2 class="news-card-announce"></h2>
         <span class="news-card-content"></span>
-
-       <button class="news-card-back-button">Назад</button>
+        <button class="news-card-back-button">Назад</button>
       </div>
     </template>
+
+    <!-- Т: Футер -->
     <template id="footer-template">
-      <div class="footer_body">
-        <p class="copyright_info"></p>
-      </div>  
+      <div class="footer_body footer-body-style">
+        <p class="copyright_info copyright-info-style"></p>
+      </div>
     </template>
+
+    <!-- Т: Навигация Breadcrumbs -->
     <template id="breadcrumbs-template">
-  <div class="breadcrumbs">
-    <span class="breadcrumbs-previous-page">Главная</span>
-    <span> / </span>
-    <span class="breadcrumbs-current-news"></span>
-  </div>
-</template>
-<template id="paginator-template"></template>
+      <div class="breadcrumbs">
+        <span class="breadcrumbs-previous-page">Главная</span>
+        <span> / </span>
+        <span class="breadcrumbs-current-news"></span>
+      </div>
+    </template>
+
+    <!-- Т: Навигация Paginator -->
+    <template id="paginator-template"></template>
+
     <script type="module" src="./dist/index.js"></script>
   </body>
 </html>
