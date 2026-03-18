@@ -27,8 +27,15 @@
 
 .news-card-banner-title-style {
 color: var(--color-banner-text);
+margin: 0px;
 }
 
 .news-card-banner-announce-style {
  color: var(--color-banner-text);
+ font-weight: var(--font-primary-regular);
+ font-size: 32px;
+}
+
+.news-card-banner-announce-style p {
+margin: 0px;
 }

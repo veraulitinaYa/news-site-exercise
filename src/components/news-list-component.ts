@@ -26,7 +26,7 @@ const listElement = this.listTemplate.content.firstElementChild!.cloneNode(true)
 
 
  const cardsContainer = document.createElement("div");
-    cardsContainer.classList.add("news_list");
+    cardsContainer.classList.add("news-cards-container");
     listElement.append(cardsContainer);
      this.cardsToShow = [];
 
