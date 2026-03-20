@@ -3,3 +3,12 @@ padding-top: 72px;
 padding-bottom: 22px;
 }
 
+.breadcrumbs-current-news {
+    color: var(--color-date-text);
+}
+
+.breadcrumbs-previous-page:hover
+{
+cursor: pointer;
+text-decoration: underline;
+}
