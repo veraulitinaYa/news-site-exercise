@@ -30,16 +30,6 @@ const logoImagePathString = "./src/data/images/logo/logo-with-text.svg";
 const footerCopyrightTestString = "© 2023 — 2412 «Галактический вестник»";
 const header = new Header(headerContainer, headerTemplate);
 const footer = new Footer(footerContainer, footerTemplate);
-// const container = document.querySelector("#news-item-test-container") as HTMLElement;
-// const listcontainer = document.querySelector("#news-list-test-container") as HTMLElement;
-// const listTemplate = document.querySelector(
-//   "#news-list-template",
-// ) as HTMLTemplateElement;
-// const detailsContainer = document.querySelector("#news-card-detailed-test-container") as HTMLElement;
-// const bannerContainer = document.querySelector("#news-card-banner-test-container") as HTMLElement;
-// const paginatorContainer = document.querySelector(
-//   "#paginator-test-container"
-// ) as HTMLElement;
 header.render({
     logoImagePath: logoImagePathString,
     isBorderShown: false,
@@ -56,13 +46,13 @@ function showPaginator() {
         paginator.setPagesCount(pages.length);
         paginator.onPageNumberClick = (page) => {
             const clickedNewsArray = pages[page - 1];
-            showBanner(clickedNewsArray[0]);
+            showBanner(pages[0][0]);
             showNewsPage(clickedNewsArray, page);
         };
         paginator.render();
         paginator.goToPage(pageToOpen);
         const clickedNewsArray = pages[pageToOpen - 1];
-        showBanner(clickedNewsArray[0]);
+        showBanner(pages[0][0]);
         showNewsPage(clickedNewsArray, pageToOpen);
     });
 }
@@ -107,42 +97,4 @@ function showNewsDetailsPage(newsId, accessedFromPage) {
         };
     });
 }
-// const template = document.querySelector(
-//   "#news-card-item-template",
-// ) as HTMLTemplateElement;
-// const templateBanner = document.querySelector(
-//   "#news-card-banner",
-// ) as HTMLTemplateElement;
-// const templateDetailed = document.querySelector(
-//   "#news-card-detailed",
-// ) as HTMLTemplateElement;
-// async function showTestCard() {
-//   const card = new NewsCard(container, template, "item");
-//   const newsModel = new NewsModel(new GetNewsService());
-//   const news = await newsModel.getNewsById(1);
-//   card.setData(news);
-//  // card.render();
-// }
-// async function showTestCardList() {
-// const newsModel = new NewsModel(new GetNewsService());
-// const news = await newsModel.getAllNews();
-// const newsList = new NewsList(listcontainer, template);
-// newsList.render(news);
-// }
-// async function showTestDetailedCard(){
-//    const card = new NewsCard(detailsContainer, templateDetailed, "details");
-//   const newsModel = new NewsModel(new GetNewsService());
-//   const news = await newsModel.getNewsById(1);
-//   card.setData(news);
-// }
-// async function showTestBannerCard(){
-//    const card = new NewsCard(bannerContainer, templateBanner, "banner");
-//   const newsModel = new NewsModel(new GetNewsService());
-//   const news = await newsModel.getNewsById(1);
-//   card.setData(news);
-// }
-// showTestCard();
-// showTestCardList();
-// showTestDetailedCard();
-// showTestBannerCard();
 showPaginator();
