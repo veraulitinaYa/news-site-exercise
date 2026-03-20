@@ -1,9 +1,25 @@
 .paginator-section-style {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    padding-right: 200px;
-    padding-left: 200px;
-    padding-top: 83px;
-    padding-bottom: 83px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-right: 200px;
+  padding-left: 200px;
+  padding-top: 83px;
+  padding-bottom: 83px;
+  gap: 16px;
+}
+
+.paginator-section-style .currentPage {
+  background-color: var(--color-accent);
+  color: var(--color-banner-text);
+  border-color: var(--color-accent-accent);
+}
+
+.page-number {
+    padding-left: 0px;
+    padding-right: 0px;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+
 }
