@@ -1,6 +1,11 @@
 # news-site-exercise
+Ссылка на сайт
 
-Для запуска проекта используется расширение для Visual Studio Code - Liver Server.
+
+Для запуска проекта
+1. npm install
+2. tsc
+3. запустить сайт с помощью расширения Visual Studio Code - Live Server.
 
 Задание: https://hr.dna.techart.ru/tasks/web
 
