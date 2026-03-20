@@ -31,7 +31,10 @@ text-transform: uppercase;
   outline: none;
   cursor: pointer;
   height: 54px;
-  width: 216px;
+  width: fit-content;
+  padding-left: 41px;
+padding-right:  41px;
+  
 }
 
 button:hover {

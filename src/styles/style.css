@@ -1,0 +1,6 @@
+.news-section-style {
+    display: flex;
+    flex-direction: column;
+    padding-left: 200px;
+    padding-right: 200px;
+}
